@@ -1,0 +1,7 @@
+{
+  "name": "Hipstagram",
+  "integrations": {
+    "cordova": {}
+  },
+  "type": "ionic-angular"
+}

@@ -1,0 +1,44 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>
+      Subir Fotografía
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <h3> Buscar Fotografía</h3>
+  <button ion-button color="secondary">Seleccionar Fotografía</button>
+  <ion-list>    
+    <ion-item>
+      <ion-label>URL</ion-label>
+      <ion-input type="text"></ion-input>
+    </ion-item>
+    <br>
+    <h3> Descripción de la Fotografía</h3>
+    <ion-item>    
+      <ion-textarea></ion-textarea>
+    </ion-item>  
+
+    <br>
+    <h3> #Hashtags</h3>
+    <ion-item>      
+      <ion-textarea></ion-textarea>
+    </ion-item>  
+
+    <ion-item>
+      <ion-label>La fotografía es de mi autoría</ion-label>
+      <ion-checkbox></ion-checkbox>
+    </ion-item>   
+
+  </ion-list>
+
+  <div padding>
+    <!-- Botón para abrir la segunda página
+    <button ion-button (click)="abrirHome()">Subir Fotografía</button>
+     -->
+    <button ion-button [navPush]="pruebaPage">Subir Fotografía</button>
+  </div>
+<br>
+  
+</ion-content>
