@@ -7,6 +7,7 @@ using System.Web.UI.WebControls;
 
 namespace deve_web.Views
 {
+    using Logic;
     public partial class Login : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
@@ -24,7 +25,14 @@ namespace deve_web.Views
 
         protected void Button1_Click(object sender, EventArgs e)
         {
-            Response.Write("<script LANGUAGE='JavaScript' >alert('Login Successful')</script>");
+            LogInLogic lig = new LogInLogic();
+            if (lig.IsUser(txtAlias.Text, txtPassword.Text))
+            {
+                Response.Redirect("Feed.aspx");
+            }
+            else {
+                Response.Write("<script LANGUAGE='JavaScript' >alert('¡Algo salio mal! Revisa de nuevo tus datos.')</script>");
+            }
         }
 
         protected void LinkButton1_Click(object sender, EventArgs e)

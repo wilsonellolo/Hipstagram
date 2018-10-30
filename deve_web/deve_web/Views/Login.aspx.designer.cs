@@ -40,22 +40,22 @@ namespace deve_web.Views {
         protected global::System.Web.UI.WebControls.LinkButton LinkButton2;
         
         /// <summary>
-        /// TextBox1 control.
+        /// txtAlias control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TextBox1;
+        protected global::System.Web.UI.WebControls.TextBox txtAlias;
         
         /// <summary>
-        /// TextBox2 control.
+        /// txtPassword control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TextBox2;
+        protected global::System.Web.UI.WebControls.TextBox txtPassword;
         
         /// <summary>
         /// Button1 control.

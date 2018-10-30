@@ -24,10 +24,10 @@
 
   <h2>Ingresar</h2>
   <p type="Alias:">
-      <asp:TextBox ID="TextBox1" runat="server" placeholder="Ingrese su alias"></asp:TextBox>
+      <asp:TextBox ID="txtAlias" runat="server" placeholder="Ingrese su alias" required></asp:TextBox>
         </p>
   <p type="contraseña:"></input>
-      <asp:TextBox ID="TextBox2" runat="server" placeholder="Ingrese su contraseña" Type="password"></asp:TextBox>
+      <asp:TextBox ID="txtPassword" runat="server" placeholder="Ingrese su contraseña" Type="password" required></asp:TextBox>
         </p>
  
         <asp:Button CssClass="button1" ID="Button1" runat="server" Text="Ingresar" OnClick="Button1_Click" />

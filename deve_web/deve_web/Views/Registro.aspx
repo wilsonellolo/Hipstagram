@@ -23,13 +23,13 @@
 </div>
 
   <h2>Registro</h2>
-        <p type="Nombre:"><asp:TextBox ID="TextBox1" runat="server" placeholder="Ingrese su nombre"></asp:TextBox></p>
-        <p type="Apellido:"></input><asp:TextBox ID="TextBox2" runat="server" placeholder="Ingrese su Apellido"></asp:TextBox> </p>
-        <p type="Alias:"></input><asp:TextBox ID="TextBox3" runat="server" placeholder="Ingrese su Alias"></asp:TextBox> </p>
-        <p type="Fecha de nacimiento:"></input><asp:TextBox ID="TextBox4" runat="server" placeholder="mes - dia -año"></asp:TextBox> </p>
-        <p type="contraseña:"></input><asp:TextBox ID="TextBox5" runat="server" placeholder="Ingrese su contraseña" type="password"></asp:TextBox> </p>
-        <p type="correo electronico:"></input><asp:TextBox ID="TextBox6" runat="server" placeholder="Ingrese su correo electronico"></asp:TextBox> </p>
- 
+        <p type="Nombre:"><asp:TextBox ID="txtNombre" runat="server" placeholder="Ingrese su nombre" required></asp:TextBox></p>
+        <p type="Apellido:"></input><asp:TextBox ID="txtApellido" runat="server" placeholder="Ingrese su Apellido" required></asp:TextBox> </p>
+        <p type="Alias:"></input><asp:TextBox ID="txtAlias" runat="server" placeholder="Ingrese su Alias" required></asp:TextBox> </p>
+        <p type="Fecha de nacimiento:"></input><asp:TextBox  type="date" value="2017-06-01"  data-date-format="YYYY MM DD" ID="txtNacimientoDate" runat="server" placeholder="año - mes -dia      ejemplo(1998-06-27)" required></asp:TextBox> </p>
+        <p type="contraseña:"></input><asp:TextBox ID="txtcontrasena" runat="server" placeholder="Ingrese su contraseña" type="password" required></asp:TextBox> </p>
+        <p type="correo electronico:"></input><asp:TextBox ID="txtMail" type="email" runat="server" placeholder="Ingrese su correo electronico" required></asp:TextBox> </p>
+        
         <asp:Button CssClass="button1" ID="Button1" runat="server" Text="Registrarme" OnClick="Button1_Click" />
     </form>
 

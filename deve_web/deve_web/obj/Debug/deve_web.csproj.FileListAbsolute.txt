@@ -34,3 +34,7 @@ C:\Users\Wilson Palma\Desktop\Hipstagram\Hipstagram\deve_web\deve_web\obj\Debug\
 C:\Users\Wilson Palma\Desktop\Hipstagram\Hipstagram\deve_web\deve_web\obj\Debug\deve_web.csproj.CopyComplete
 C:\Users\Wilson Palma\Desktop\Hipstagram\Hipstagram\deve_web\deve_web\obj\Debug\deve_web.dll
 C:\Users\Wilson Palma\Desktop\Hipstagram\Hipstagram\deve_web\deve_web\obj\Debug\deve_web.pdb
+C:\Users\Wilson Palma\Desktop\Hipstagram\Hipstagram\deve_web\deve_web\bin\Google.Protobuf.dll
+C:\Users\Wilson Palma\Desktop\Hipstagram\Hipstagram\deve_web\deve_web\bin\MySql.Data.dll
+C:\Users\Wilson Palma\Desktop\Hipstagram\Hipstagram\deve_web\deve_web\bin\Google.Protobuf.xml
+C:\Users\Wilson Palma\Desktop\Hipstagram\Hipstagram\deve_web\deve_web\bin\MySql.Data.xml
