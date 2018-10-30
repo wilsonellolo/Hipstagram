@@ -50,5 +50,29 @@ namespace deve_web.Acces
             }
 
         }
+        /*insert into Post(ref_image,descripcion, username,image) VALUES('"+ref_image+"','"+descripcion+"', '"+username+"','"+image+"');
+*/
+        public bool IsInserted(byte[] image, String descripcion)
+        {
+            String alias = "wicho";
+
+            MySqlConnection conexion = new MySqlConnection(Variables.StringConection);
+            try
+            {
+                conexion.Open();
+
+                String query = "insert into Post(ref_image,decripcion, username,image) VALUES('" + DateTime.Now.ToString("yyyy’-‘MM’-‘dd’T’HH’:’mm’:’ss.fffffffK") + alias+"','" + descripcion + "', '" +alias + "','" + image + "');";
+                MySqlCommand comando = new MySqlCommand(query, conexion);
+                comando.ExecuteNonQuery();
+                conexion.Close();
+                return true;
+            }
+            catch (Exception ex)
+            {
+
+                return false;
+            }
+
+        }
     }
 }

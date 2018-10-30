@@ -76,22 +76,22 @@ namespace deve_web.Views {
         protected global::System.Web.UI.WebControls.FileUpload fup;
         
         /// <summary>
-        /// TextBox5 control.
+        /// txtDescripcion control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TextBox5;
+        protected global::System.Web.UI.WebControls.TextBox txtDescripcion;
         
         /// <summary>
-        /// TextBox4 control.
+        /// TxtHashtag control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TextBox4;
+        protected global::System.Web.UI.WebControls.TextBox TxtHashtag;
         
         /// <summary>
         /// Button1 control.
