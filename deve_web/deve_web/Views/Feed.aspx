@@ -27,10 +27,12 @@
 	
 </div>
 
-  <h2>Ingresar</h2>
-  <p type="Dirección de la imagen:"> <asp:TextBox ID="TextBox1" runat="server" placeholder="Dirección de imagen"></asp:TextBox> </p>
-        <asp:Button CssClass="button1" ID="Button2" runat="server" Text="Cargar imagen" OnClick="Button1_Click" /> 
-        <p type="Descripción:"></input> <asp:TextBox ID="TextBox5" runat="server" placeholder="Ingrese una descripción de la imagen"></asp:TextBox> </p>
+  <h2>Publicar:</h2>
+        <p type="Imagen:">
+        <asp:FileUpload CssClass="button1" ID="fup" accept="image/*" runat="server" />
+       </p>
+        <p type="Descripción:"></input> 
+            <asp:TextBox ID="TextBox5" runat="server" placeholder="Ingrese una descripción de la imagen"></asp:TextBox> </p>
         <p type="Hashtags:"></input> <asp:TextBox ID="TextBox4" runat="server" placeholder="#Hashtag1 #hashtag2..."></asp:TextBox> </p>
         <asp:Button CssClass="button1" ID="Button1" runat="server" Text="Subir" OnClick="Button1_Click" />
     </form>

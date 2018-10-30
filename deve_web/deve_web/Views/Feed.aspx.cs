@@ -11,7 +11,7 @@ namespace deve_web.Views
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+           
         }
 
         protected void LinkButton1_Click(object sender, EventArgs e)
@@ -25,6 +25,11 @@ namespace deve_web.Views
         }
 
         protected void LinkButton2_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void Button_Clic(object sender, EventArgs e)
         {
 
         }
