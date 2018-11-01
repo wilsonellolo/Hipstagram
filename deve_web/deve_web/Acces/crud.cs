@@ -41,6 +41,7 @@ namespace deve_web.Acces
                 MySqlDataReader myreader = comando.ExecuteReader();
                 myreader.Read();
                 String username = myreader["username"].ToString();
+                conexion.Close();
                 return username;
             }
             catch (Exception ex)
@@ -60,8 +61,37 @@ namespace deve_web.Acces
             try
             {
                 conexion.Open();
+                /*********************************/
+                var data = image;
+                using (var cmd = new MySqlCommand("insert into Post(ref_image,decripcion, username,image) VALUES('" + DateTime.Now.ToString("yyyy’-‘MM’-‘dd’T’HH’:’mm’:’ss.fffffffK") + alias + "','" + descripcion + "', '" + alias + "',@image);",  conexion))
+                {
+                    cmd.Parameters.Add("@image", MySqlDbType.LongBlob).Value = data;
+                    cmd.ExecuteNonQuery();
+                }
+                /**********************************/
+                /*conexion.Open();
 
                 String query = "insert into Post(ref_image,decripcion, username,image) VALUES('" + DateTime.Now.ToString("yyyy’-‘MM’-‘dd’T’HH’:’mm’:’ss.fffffffK") + alias+"','" + descripcion + "', '" +alias + "','" + image + "');";
+                MySqlCommand comando = new MySqlCommand(query, conexion);
+                comando.ExecuteNonQuery();*/
+                conexion.Close();
+                return true;
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
+
+        }
+        public bool inserthashtag(String Hashtag)
+        {
+
+            MySqlConnection conexion = new MySqlConnection(Variables.StringConection);
+            try
+            {
+                conexion.Open();
+
+                String query = "";//"insert into Post(ref_image,decripcion, username,image) VALUES('" + DateTime.Now.ToString("yyyy’-‘MM’-‘dd’T’HH’:’mm’:’ss.fffffffK") + alias + "','" + descripcion + "', '" + alias + "','" + image + "');";
                 MySqlCommand comando = new MySqlCommand(query, conexion);
                 comando.ExecuteNonQuery();
                 conexion.Close();
@@ -69,7 +99,6 @@ namespace deve_web.Acces
             }
             catch (Exception ex)
             {
-
                 return false;
             }
 
