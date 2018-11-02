@@ -11,13 +11,13 @@ namespace deve_web.Views
     using Logic;
     using MySql.Data.MySqlClient;
     using System.IO;
-
+    using Acces;
     public partial class Feed : System.Web.UI.Page
     {
         String username;
         protected void Page_Load(object sender, EventArgs e)
         {
-            
+
             MySqlConnection conexion = new MySqlConnection(Variables.StringConection);
             try
             {
@@ -30,7 +30,7 @@ namespace deve_web.Views
                     pa.CssClass = "posters";
                     Label Username = new Label();
                     Username.CssClass = "users";
-                    Username.Text= myreader.GetString(2);
+                    Username.Text = myreader.GetString(2);
                     pa.Controls.Add(Username);
                     //colocando imagen;
                     Image pic = new Image();
@@ -44,41 +44,54 @@ namespace deve_web.Views
                     //fin de colocar imagen
                     Label descripcion = new Label();
                     descripcion.CssClass = "description";
-                    descripcion.Text = "<BR>"+ myreader.GetString(1);
+                    descripcion.Text = "<BR>" + myreader.GetString(1);
                     pa.Controls.Add(descripcion);
-                    
+
                     //colocando Hashtags
                     Label hashtgas = new Label();
                     hashtgas.ForeColor = System.Drawing.Color.Blue;
                     MySqlDataReader RH = fl.HashtagsR(myreader.GetString(0));
-                    String auxHashtags=string.Empty;
+                    String auxHashtags = string.Empty;
                     while (RH.Read()) {
-                        auxHashtags +=RH.GetString(1)+" ";
+                        auxHashtags += RH.GetString(1) + " ";
                     }
                     hashtgas.Text = "<BR><BR>" + auxHashtags;
-                    pa.Controls.Add(hashtgas) ;
+                    pa.Controls.Add(hashtgas);
 
+                    RH.Close();
 
                     //Like y disliek
                     Button btnDislike = new Button();
                     btnDislike.Width = 10;
                     btnDislike.Text = "↓";
+                    btnDislike.ToolTip = myreader.GetString(0);
+                    btnDislike.Click += new EventHandler(this.Dislike_click);
                     btnDislike.CssClass = "dislike";
                     pa.Controls.Add(btnDislike);
 
                     Label LikeCount = new Label();
                     LikeCount.CssClass = "likeCount";
                     LikeCount.Width = 10;
-                    LikeCount.Text = "4";
+                    crud cr = new crud();
+                    String count_like = cr.getLikes(myreader.GetString(0));
+                    if (!string.IsNullOrEmpty(count_like))
+                    {
+                        LikeCount.Text = count_like;
+                    }
+                    else {
+                        LikeCount.Text = "0";
+                    }
                     pa.Controls.Add(LikeCount);
 
-                    
+
                     Button btnLike = new Button();
                     btnLike.Width = 11;
                     btnLike.Text = "↑";
                     btnLike.CssClass = "like";
+                    btnLike.ToolTip = myreader.GetString(0) + "#";
+                    btnLike.Click += new EventHandler(this.Like_click) ;
                     pa.Controls.Add(btnLike);
-                   
+
                     //Comentarios
                     Label lbl = new Label();
                     lbl.CssClass = "comentarios";
@@ -88,10 +101,10 @@ namespace deve_web.Views
                     TextBox comment = new TextBox();
                     comment.TextMode = TextBoxMode.MultiLine;
                     comment.Width = 534;
-                    comment.Height=100;
+                    comment.Height = 100;
                     comment.BackColor = System.Drawing.Color.GhostWhite;
                     comment.ToolTip = "Ingrese un comentario sobre la imagen.";
-                    comment.TabIndex =count;                    
+                    comment.TabIndex = count;
                     pa.Controls.Add(comment);
 
                     Button btnComment = new Button();
@@ -105,8 +118,8 @@ namespace deve_web.Views
 
                     Button btnSeeComment = new Button();
                     btnSeeComment.CssClass = "right";
-                    btnSeeComment.Width=110;
-                    btnSeeComment.BackColor=System.Drawing.Color.DodgerBlue;
+                    btnSeeComment.Width = 110;
+                    btnSeeComment.BackColor = System.Drawing.Color.DodgerBlue;
                     btnSeeComment.Text = "Comentarios";
                     pa.Controls.Add(btnSeeComment);
 
@@ -116,19 +129,29 @@ namespace deve_web.Views
                 }
                 myreader = null;
                 myreader.Close();
-                
+
             }
             catch (Exception ex) { }
-          
+
         }
+        protected void hacer (String a){}
 
         protected void Like_click(object sender, EventArgs e) {
-
+            //Response.Write("<script LANGUAGE='JavaScript' >alert('¡Voto positivo!')</script>");
             Button bt = (Button)sender;
-            Response.Write("<script LANGUAGE='JavaScript' >alert('Like a !"+bt.ID+" ')</script>");
-            
+            crud cr = new crud();
+            cr.inserRank(Sesion.username, bt.ToolTip.Replace("#",""), "1");
+            Response.Redirect("Feed.aspx");
         }
-        
+        protected void Dislike_click(object sender, EventArgs e)
+        {
+            //Response.Write("<script LANGUAGE='JavaScript' >alert('¡Voto Negativo!')</script>");
+            Button bt = (Button)sender;
+            crud cr = new crud();
+            cr.inserRank(Sesion.username, bt.ToolTip, "-1");
+            Response.Redirect("Feed.aspx");
+        }
+
         protected void Button1_Click(object sender, EventArgs e)
         {
             if (fup.HasFile)

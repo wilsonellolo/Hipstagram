@@ -119,6 +119,7 @@
     <Compile Include="Models\Comentario.cs" />
     <Compile Include="Models\Publicacion.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Sesion.cs" />
     <Compile Include="Views\Feed.aspx.cs">
       <DependentUpon>Feed.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
