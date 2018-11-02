@@ -17,20 +17,13 @@ namespace deve_web.Views
         String username;
         protected void Page_Load(object sender, EventArgs e)
         {
-
-            //select ref_image, decripcion, username, image from Post;
+            
             MySqlConnection conexion = new MySqlConnection(Variables.StringConection);
             try
             {
-                /*
-                conexion.Open();
-                MySqlCommand comando = new MySqlCommand("select ref_image, decripcion, username, image from Post;", conexion);
-                MySqlDataReader myreader = comando.ExecuteReader();
-                //myreader.Read();
-
-                */
                 FeedLogic fl = new FeedLogic();
                 MySqlDataReader myreader = fl.posts();
+                short count = 0;
                 while (myreader.Read())
                 {
                     Panel pa = new Panel();
@@ -42,8 +35,6 @@ namespace deve_web.Views
                     //colocando imagen;
                     Image pic = new Image();
                     pic.CssClass = "image";
-
-
                     byte[] image = (byte[])myreader["image"];
                     string base64String = Convert.ToBase64String(image, 0, image.Length);
                     pic.ImageUrl = "data:image;base64," + Convert.ToBase64String(image);
@@ -53,43 +44,39 @@ namespace deve_web.Views
                     //fin de colocar imagen
                     Label descripcion = new Label();
                     descripcion.CssClass = "description";
-                    descripcion.Text = myreader.GetString(1);
+                    descripcion.Text = "<BR>"+ myreader.GetString(1);
                     pa.Controls.Add(descripcion);
-
-                    form1.Controls.Add(pa);
                     
+                    //colocando Hashtags
+                    Label hashtgas = new Label();
+                    hashtgas.ForeColor = System.Drawing.Color.Blue;
+                    MySqlDataReader RH = fl.HashtagsR(myreader.GetString(0));
+                    String auxHashtags=string.Empty;
+                    while (RH.Read()) {
+                        auxHashtags +=RH.GetString(1)+" ";
+                    }
+                    hashtgas.Text = "<BR><BR>" + auxHashtags;
+                    pa.Controls.Add(hashtgas) ;
 
+                    //Comentarios
+                    
+                    TextBox comment = new TextBox();
+                    comment.Style.Add("placeholder", "Ingrese un comentario sobre la imagen.");
+                    comment.TabIndex =count;                    
+                    pa.Controls.Add(comment);
+
+                    Button btnComment = new Button();
+                    btnComment.Text = "Comentar";
+                    pa.Controls.Add(btnComment);
+                    form1.Controls.Add(pa);
+                    count++;
                 }
-                //String username = myreader["image"].ToString();
-
-
-               /* byte[] image = (byte[])myreader["image"];
-                string base64String = Convert.ToBase64String(image, 0, image.Length);
-                imagen.ImageUrl = "data:image;base64," + Convert.ToBase64String(image);*/
+                myreader = null;
+                myreader.Close();
+                
             }
             catch (Exception ex) { }
-            /******************************************/
-
-        /*    for (int i = 0; i < 45; i++) {
-                Label Username = new Label();
-                Image pic = new Image();
-                Button Like = new Button();
-                Like.ID = "Like" + i;
-                Label NoLike = new Label();
-                Button Dislike = new Button();
-                Label descripcion = new Label();
-                Label hashtags = new Label();
-                Button Comentar = new Button();
-                username = "user" + i;
-                Like.Text = "Like" + i;
-                Like.ToolTip = "Like" + i;
-                Like.Command += new CommandEventHandler(this.Like_click);
-                form1.Controls.Add(Like);
-                //pa.BackColor = System.Drawing.ColorTranslator.FromHtml("#FF6230");
-                Like.Click += new System.EventHandler(Like_click);
-
-
-            }*/
+          
         }
 
         protected void Like_click(object sender, EventArgs e) {
@@ -112,9 +99,6 @@ namespace deve_web.Views
                      Response.Redirect("Feed.aspx");
                     return;
                 }
-                
-                   
-
             }
                 Response.Write("<script LANGUAGE='JavaScript' >alert('¡Algo salio mal! ')</script>");
             

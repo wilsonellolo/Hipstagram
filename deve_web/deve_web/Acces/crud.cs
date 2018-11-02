@@ -30,13 +30,10 @@ namespace deve_web.Acces
 
         public String IsUser( String user, String password)
         {
-
             MySqlConnection conexion = new MySqlConnection(Variables.StringConection);
             try
             {
                 conexion.Open();
-
-
                 MySqlCommand comando = new MySqlCommand("select username from User where username ='"+user+"' and password_='"+password+"';", conexion);
                 MySqlDataReader myreader = comando.ExecuteReader();
                 myreader.Read();
@@ -46,56 +43,63 @@ namespace deve_web.Acces
             }
             catch (Exception ex)
             {
-
                 return null;
             }
 
         }
-        /*insert into Post(ref_image,descripcion, username,image) VALUES('"+ref_image+"','"+descripcion+"', '"+username+"','"+image+"');
-*/
-        public bool IsInserted(byte[] image, String descripcion)
+ 
+        public String IsInserted(byte[] image, String descripcion)
         {
-            String alias = "wicho";
-
+            String alias = DateTime.Now.ToString("yyyy’-‘MM’-‘dd’T’HH’:’mm’:’ss.fffffffK") + "wicho";
+            String alias1 = "wicho";
             MySqlConnection conexion = new MySqlConnection(Variables.StringConection);
             try
             {
                 conexion.Open();
-                /*********************************/
                 var data = image;
-                using (var cmd = new MySqlCommand("insert into Post(ref_image,decripcion, username,image) VALUES('" + DateTime.Now.ToString("yyyy’-‘MM’-‘dd’T’HH’:’mm’:’ss.fffffffK") + alias + "','" + descripcion + "', '" + alias + "',@image);",  conexion))
+                using (var cmd = new MySqlCommand("insert into Post(ref_image,decripcion, username,image) VALUES('" + alias + "','" + descripcion + "', '" + alias1 + "',@image);",  conexion))
                 {
                     cmd.Parameters.Add("@image", MySqlDbType.LongBlob).Value = data;
                     cmd.ExecuteNonQuery();
                 }
                 conexion.Close();
-                return true;
+                return alias;
             }
             catch (Exception ex)
             {
-                return false;
+                return null;
             }
 
         }
-        public bool inserthashtag(String Hashtag)
+        public bool inserthashtag(String Hashtag,String imageId)
         {
+            if (string.IsNullOrEmpty(Hashtag)) {
+                return false;
+            }
 
             MySqlConnection conexion = new MySqlConnection(Variables.StringConection);
             try
             {
                 conexion.Open();
-
-                String query = "";//"insert into Post(ref_image,decripcion, username,image) VALUES('" + DateTime.Now.ToString("yyyy’-‘MM’-‘dd’T’HH’:’mm’:’ss.fffffffK") + alias + "','" + descripcion + "', '" + alias + "','" + image + "');";
+                String query = "insert into hashtag (tag) Values ('#"+Hashtag+"');";
+                MySqlCommand comando = new MySqlCommand(query, conexion);
+                comando.ExecuteNonQuery();
+                
+               
+            }
+            catch (Exception ex){}
+            try
+            {
+                conexion.Close();
+                conexion.Open();
+                String query = "insert into post_hashtag(ref_image, tag) values('"+imageId+"', '#"+Hashtag+"'); ";
                 MySqlCommand comando = new MySqlCommand(query, conexion);
                 comando.ExecuteNonQuery();
                 conexion.Close();
-                return true;
-            }
-            catch (Exception ex)
-            {
-                return false;
-            }
 
+            }
+            catch (Exception ex){}
+            return true;
         }
 
         public MySqlDataReader GetPosts()
@@ -108,6 +112,27 @@ namespace deve_web.Acces
                 MySqlCommand comando = new MySqlCommand("select ref_image, decripcion, username, image from Post;", conexion);
                 MySqlDataReader myreader = comando.ExecuteReader();
               
+                return myreader;
+            }
+            catch (Exception ex)
+            {
+                return null;
+            }
+
+        }
+
+
+        
+        public MySqlDataReader GetHashtags(String imageId)
+        {
+
+            MySqlConnection conexion = new MySqlConnection(Variables.StringConection);
+            try
+            {
+                conexion.Open();
+                MySqlCommand comando = new MySqlCommand("select ref_image, tag from post_hashtag where ref_image = '"+imageId+"';", conexion);
+                MySqlDataReader myreader = comando.ExecuteReader();
+
                 return myreader;
             }
             catch (Exception ex)

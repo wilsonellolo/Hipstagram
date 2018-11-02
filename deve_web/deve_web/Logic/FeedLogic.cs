@@ -11,11 +11,13 @@ namespace deve_web.Logic
     {
         public bool LoadImage(byte[] pic, String descripcion, String hashtags)
         {
-            DivAndInsertHashtag(hashtags);
+            
             crud crud = new crud();
-            if (crud.IsInserted(pic, descripcion))
+            String imageId;
+            imageId = crud.IsInserted(pic, descripcion);
+            if (!string.IsNullOrEmpty(imageId))
             {
-
+                DivAndInsertHashtag(hashtags, imageId);
                 return true;
             }
             else {
@@ -24,12 +26,13 @@ namespace deve_web.Logic
 
         }
 
-        private void  DivAndInsertHashtag(String Hashtag){
-            Hashtag = Hashtag.Replace(" ", "");
+        private void  DivAndInsertHashtag(String Hashtag, String imageId)
+        {
+          Hashtag = Hashtag.Replace(" ", "");
             string[] hashtags = Hashtag.Split('#');
             crud crud = new crud();
-            foreach (String h in hashtags) {
-                crud.inserthashtag(h);
+            for (int i = 0; i < hashtags.Length; i++) {
+                crud.inserthashtag(hashtags[i],imageId);
             }
             
         }
@@ -37,6 +40,11 @@ namespace deve_web.Logic
         public MySqlDataReader posts() {
             crud crud = new crud();
             return crud.GetPosts();
+        }
+        public MySqlDataReader HashtagsR(String ImageId)
+        {
+            crud crud = new crud();
+            return crud.GetHashtags(ImageId);
         }
     }
 }
