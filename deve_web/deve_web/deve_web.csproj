@@ -115,6 +115,7 @@
     <Compile Include="Logic\FeedLogic.cs" />
     <Compile Include="Logic\LogInLogic.cs" />
     <Compile Include="Logic\SecurityLogic.cs" />
+    <Compile Include="Logic\ServiceLogic.cs" />
     <Compile Include="Logic\SingUpLogic.cs" />
     <Compile Include="Models\Comentario.cs" />
     <Compile Include="Models\Publicacion.cs" />

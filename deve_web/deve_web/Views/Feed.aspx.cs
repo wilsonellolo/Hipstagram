@@ -156,6 +156,15 @@ namespace deve_web.Views
         {
             if (fup.HasFile)
             {
+                ServiceLogic sl = new ServiceLogic();
+                if (sl.IsSensitiveImage(fup.FileName)) {
+                    Response.Write("<script LANGUAGE='JavaScript' >alert('No se ha podido publicar la foto debido a que la imagen contiene contenido sensible (muertes, desmembramiento, contenido sexual, contenido que incite al odio)')</script>");
+                    return;
+                }
+                if (sl.IsSensitiHashtags(TxtHashtag.Text)) {
+                    Response.Write("<script LANGUAGE='JavaScript' >alert('No se ha podido publicar la foto debido a que los hashtags contienen contenido sensible (muertes, desmembramiento, contenido sexual, contenido que incite al odio) ')</script>");
+                    return;
+                }
                 int lenght = fup.PostedFile.ContentLength;
                 byte[] pic = new byte[lenght];
                 fup.PostedFile.InputStream.Read(pic, 0, lenght);
