@@ -10,9 +10,17 @@ html {
 	margin:0; 
 	padding:0
 }
+.right{
+    float: right;
+}
+
 .description{
 	font-size:20px;
 	color:#000000;
+}
+.comentarios{
+	font-size:15px;
+	color:#585858;
 }
 
 .users{
@@ -61,7 +69,7 @@ Panel{
 }
 
 .posters{
-	width:600px;height:900px;
+	width:600px;height:920px;
 	background:#e6e6e6;
 	border-radius:8px;
 	box-shadow:0 0 40px -10px #000;

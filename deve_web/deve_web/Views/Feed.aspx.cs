@@ -59,15 +59,37 @@ namespace deve_web.Views
                     pa.Controls.Add(hashtgas) ;
 
                     //Comentarios
-                    
+                    Label lbl = new Label();
+                    lbl.CssClass = "comentarios";
+                    lbl.Text = "<BR><BR>" + "Ingrese un comentario:";
+                    pa.Controls.Add(lbl);
+
                     TextBox comment = new TextBox();
-                    comment.Style.Add("placeholder", "Ingrese un comentario sobre la imagen.");
+                    comment.TextMode = TextBoxMode.MultiLine;
+                    comment.Width = 534;
+                    comment.Height=100;
+                    comment.BackColor = System.Drawing.Color.GhostWhite;
+                    comment.ToolTip = "Ingrese un comentario sobre la imagen.";
                     comment.TabIndex =count;                    
                     pa.Controls.Add(comment);
 
                     Button btnComment = new Button();
+                    btnComment.BackColor = System.Drawing.Color.Gainsboro;
                     btnComment.Text = "Comentar";
                     pa.Controls.Add(btnComment);
+
+                    Label space = new Label();
+                    space.Text = "<BR><BR>";
+                    pa.Controls.Add(space);
+
+                    Button btnSeeComment = new Button();
+                    btnSeeComment.CssClass = "right";
+                    btnSeeComment.Width=110;
+                    btnSeeComment.BackColor=System.Drawing.Color.DodgerBlue;
+                    btnSeeComment.Text = "Comentarios";
+                    pa.Controls.Add(btnSeeComment);
+
+                    //Agregando panel
                     form1.Controls.Add(pa);
                     count++;
                 }
