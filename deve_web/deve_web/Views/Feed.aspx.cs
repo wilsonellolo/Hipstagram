@@ -58,6 +58,27 @@ namespace deve_web.Views
                     hashtgas.Text = "<BR><BR>" + auxHashtags;
                     pa.Controls.Add(hashtgas) ;
 
+
+                    //Like y disliek
+                    Button btnDislike = new Button();
+                    btnDislike.Width = 10;
+                    btnDislike.Text = "↓";
+                    btnDislike.CssClass = "dislike";
+                    pa.Controls.Add(btnDislike);
+
+                    Label LikeCount = new Label();
+                    LikeCount.CssClass = "likeCount";
+                    LikeCount.Width = 10;
+                    LikeCount.Text = "4";
+                    pa.Controls.Add(LikeCount);
+
+                    
+                    Button btnLike = new Button();
+                    btnLike.Width = 11;
+                    btnLike.Text = "↑";
+                    btnLike.CssClass = "like";
+                    pa.Controls.Add(btnLike);
+                   
                     //Comentarios
                     Label lbl = new Label();
                     lbl.CssClass = "comentarios";

@@ -10,6 +10,40 @@ html {
 	margin:0; 
 	padding:0
 }
+.like{
+	float:right;
+	padding:8px 12px;
+	margin:8px 0 0;
+	font-family:'Montserrat',sans-serif;
+	border:2px solid #78788c;
+	background:green;
+	color:white;
+	cursor:pointer;
+	transition:all .3s
+}
+.dislike{
+	float:right;
+	padding:8px 12px;
+	padding-right: 20px;
+	margin:8px 0 0;
+	font-family:'Montserrat',sans-serif;
+	border:2px solid #78788c;
+	background:Red;
+	color:white;
+	cursor:pointer;
+	transition:all .3s
+}
+.likeCount{
+	float:right;
+	padding:8px 12px;
+	padding-right: 20px;
+	margin:8px 0 0;
+	font-family:'Montserrat',sans-serif;
+	border:2px solid #78788c;
+	color:black;
+	transition:all .3s
+}
+
 .right{
     float: right;
 }
