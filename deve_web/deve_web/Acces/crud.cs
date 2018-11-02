@@ -68,12 +68,6 @@ namespace deve_web.Acces
                     cmd.Parameters.Add("@image", MySqlDbType.LongBlob).Value = data;
                     cmd.ExecuteNonQuery();
                 }
-                /**********************************/
-                /*conexion.Open();
-
-                String query = "insert into Post(ref_image,decripcion, username,image) VALUES('" + DateTime.Now.ToString("yyyy’-‘MM’-‘dd’T’HH’:’mm’:’ss.fffffffK") + alias+"','" + descripcion + "', '" +alias + "','" + image + "');";
-                MySqlCommand comando = new MySqlCommand(query, conexion);
-                comando.ExecuteNonQuery();*/
                 conexion.Close();
                 return true;
             }
@@ -100,6 +94,25 @@ namespace deve_web.Acces
             catch (Exception ex)
             {
                 return false;
+            }
+
+        }
+
+        public MySqlDataReader GetPosts()
+        {
+
+            MySqlConnection conexion = new MySqlConnection(Variables.StringConection);
+            try
+            {
+                conexion.Open();
+                MySqlCommand comando = new MySqlCommand("select ref_image, decripcion, username, image from Post;", conexion);
+                MySqlDataReader myreader = comando.ExecuteReader();
+              
+                return myreader;
+            }
+            catch (Exception ex)
+            {
+                return null;
             }
 
         }

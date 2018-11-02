@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using MySql.Data.MySqlClient;
 
 namespace deve_web.Logic
 {
@@ -21,8 +22,6 @@ namespace deve_web.Logic
                 return false;
             }
 
-
-
         }
 
         private void  DivAndInsertHashtag(String Hashtag){
@@ -33,6 +32,11 @@ namespace deve_web.Logic
                 crud.inserthashtag(h);
             }
             
+        }
+
+        public MySqlDataReader posts() {
+            crud crud = new crud();
+            return crud.GetPosts();
         }
     }
 }
