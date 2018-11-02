@@ -54,8 +54,8 @@ namespace deve_web.Acces
 
         public String IsInserted(byte[] image, String descripcion)
         {
-            String alias = DateTime.Now.ToString("yyyy’-‘MM’-‘dd’T’HH’:’mm’:’ss.fffffffK") + "wicho";
-            String alias1 = "wicho";
+            String alias = DateTime.Now.ToString("yyyy’-‘MM’-‘dd’T’HH’:’mm’:’ss.fffffffK") + Sesion.username;
+            String alias1 = Sesion.username;
             MySqlConnection conexion = new MySqlConnection(Variables.StringConection);
             try
             {

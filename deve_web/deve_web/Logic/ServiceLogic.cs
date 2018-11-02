@@ -27,12 +27,10 @@ namespace deve_web.Logic
             {
                 return true;
             }
-            
-            else if(vector[0].Contains("0")) {
+            else  {
                 return false;
             }
-            return false;
-            
+           
         }
 
         public bool IsSensitiHashtags(String Hashtags)

@@ -12,6 +12,11 @@ namespace deve_web.Views
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (Sesion.logueado) {
+                if (!string.IsNullOrEmpty(Sesion.username)) { 
+                Response.Redirect("Feed.aspx");
+                }
+            }
 
         }
 

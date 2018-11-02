@@ -12,7 +12,13 @@ namespace deve_web.Views
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            if (Sesion.logueado)
+            {
+                if (!string.IsNullOrEmpty(Sesion.username))
+                {
+                    Response.Redirect("Feed.aspx");
+                }
+            }
         }
        
 
@@ -28,6 +34,8 @@ namespace deve_web.Views
             LogInLogic lig = new LogInLogic();
             if (lig.IsUser(txtAlias.Text, txtPassword.Text))
             {
+                Sesion.username = txtAlias.Text;
+                Sesion.logueado = true;
                 Response.Redirect("Feed.aspx");
             }
             else {
@@ -43,6 +51,12 @@ namespace deve_web.Views
         protected void LinkButton2_Click(object sender, EventArgs e)
         {
             Response.Redirect("Login.aspx");
+        }
+
+        protected void btnVisitante_Click(object sender, EventArgs e)
+        {
+            Sesion.logueado = false;
+            Response.Redirect("Feed.aspx");
         }
     }
 }

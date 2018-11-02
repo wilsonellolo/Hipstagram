@@ -15,28 +15,23 @@
             <img src="img.png"/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             <asp:LinkButton style="vertical-align:middle"  ID="LinkButton4" runat="server" OnClick="LinkButton2_Click">Buscar</asp:LinkButton> 
             <asp:TextBox ID="TextBox2" Width="250" runat="server" placeholder="Ingrese un alias o #hashtag"></asp:TextBox>
-            <asp:LinkButton style="vertical-align:middle" ID="LinkButton3" runat="server" OnClick="LinkButton1_Click">Perfil</asp:LinkButton>
             &nbsp;&nbsp;&nbsp;
-            <asp:LinkButton style="vertical-align:middle" ID="LinkButton1" runat="server" OnClick="LinkButton1_Click">Gestión</asp:LinkButton>
-            &nbsp;&nbsp;&nbsp;
-            <asp:LinkButton style="vertical-align:middle"  ID="LinkButton2" runat="server" OnClick="LinkButton2_Click">Salir</asp:LinkButton>
+            <asp:LinkButton style="vertical-align:middle"  ID="LinkButton2" runat="server" OnClick="LinkSalir">Salir</asp:LinkButton>
         </div>
-
-        <div class="form">
+        <asp:Panel ID="Panel1" runat="server" class="form">
+         
         <h2>Publicar:</h2>
             <p type="Imagen:">
-                <asp:FileUpload CssClass="button1" ID="fup" accept="image/*" runat="server" />
+                <asp:FileUpload CssClass="button1" ID="fup" accept="image/*" runat="server" required/>
             </p>
             <p type="Descripción:"> 
-                <asp:TextBox ID="txtDescripcion" runat="server" placeholder="Ingrese una descripción de la imagen"></asp:TextBox> </p>
+                <asp:TextBox ID="txtDescripcion" runat="server" placeholder="Ingrese una descripción de la imagen" required></asp:TextBox> </p>
             <p type="Hashtags:">
                 <asp:TextBox ID="TxtHashtag" runat="server" placeholder="#Hashtag1 #hashtag2..."></asp:TextBox> 
             </p>
             <asp:Button CssClass="button1" ID="Button1" runat="server" Text="Subir" OnClick="Button1_Click" />
-        </div >
-
-
-        
+       
+              </asp:Panel>
     </form>
         
 

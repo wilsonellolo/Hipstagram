@@ -31,6 +31,10 @@
         </p>
  
         <asp:Button CssClass="button1" ID="Button1" runat="server" Text="Ingresar" OnClick="Button1_Click" />
+        <br />
+        <br />
+        <br />
+        <asp:Button ID="btnVisitante" runat="server" Text="Entrar como visitante" Width="200" OnClick="btnVisitante_Click" />
     </form>
 
 </body>

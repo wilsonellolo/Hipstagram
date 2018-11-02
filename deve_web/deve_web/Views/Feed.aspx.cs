@@ -17,6 +17,9 @@ namespace deve_web.Views
         String username;
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (!Sesion.logueado) {
+                Panel1.Visible = false;
+            }
 
             MySqlConnection conexion = new MySqlConnection(Variables.StringConection);
             try
@@ -204,6 +207,13 @@ namespace deve_web.Views
         protected void Button5_Click(object sender, EventArgs e)
         {
 
+        }
+
+        protected void LinkSalir(object sender, EventArgs e)
+        {
+            Sesion.logueado = false;
+            Sesion.username = null;
+            Response.Redirect("Login.aspx");
         }
     }
 }
