@@ -31,13 +31,13 @@ namespace deve_web.Views {
         protected global::System.Web.UI.WebControls.LinkButton LinkButton4;
         
         /// <summary>
-        /// TextBox2 control.
+        /// txtBuscar control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TextBox2;
+        protected global::System.Web.UI.WebControls.TextBox txtBuscar;
         
         /// <summary>
         /// LinkButton2 control.

@@ -27,7 +27,6 @@ namespace deve_web.Acces
             }
 
         }
-
         public String IsUser(String user, String password)
         {
             MySqlConnection conexion = new MySqlConnection(Variables.StringConection);
@@ -51,7 +50,6 @@ namespace deve_web.Acces
             }
 
         }
-
         public String IsInserted(byte[] image, String descripcion)
         {
             String alias = DateTime.Now.ToString("yyyy’-‘MM’-‘dd’T’HH’:’mm’:’ss.fffffffK") + Sesion.username;
@@ -79,7 +77,6 @@ namespace deve_web.Acces
             }
 
         }
-
         public bool inserthashtag(String Hashtag, String imageId)
         {
             if (string.IsNullOrEmpty(Hashtag))
@@ -117,7 +114,6 @@ namespace deve_web.Acces
             }
             return true;
         }
-
         public MySqlDataReader GetPosts()
         {
 
@@ -141,9 +137,6 @@ namespace deve_web.Acces
             }
 
         }
-
-
-
         public MySqlDataReader GetHashtags(String imageId)
 
         {
@@ -168,9 +161,6 @@ namespace deve_web.Acces
             }
 
         }
-
-        /*insert into Ranking (date_,value,username,ref_image) Values (NOW(),1,'wicho','2018’-‘11’-‘01’T’18’:’55’:’13.0452595-06:00wicho');
-         */
         public bool inserRank(String username, String imageId, String voto)
         {
 
@@ -212,7 +202,6 @@ namespace deve_web.Acces
 
             }
         }
-        //select SUM(value) from Ranking where ref_image = '2018’-‘11’-‘01’T’18’:’55’:’13.0452595-06:00wicho';
         public String getLikes(String imageId)
         {
 
@@ -241,5 +230,30 @@ namespace deve_web.Acces
 
 
         }
+        public MySqlDataReader GetPostsSearch(String hashtags)
+        {
+
+            MySqlConnection conexion = new MySqlConnection(Variables.StringConection);
+            try
+            {
+                conexion.Open();
+                MySqlCommand comando = new MySqlCommand("SELECT t1.ref_image, t1.decripcion, t1.username, t1.image FROM Post t1  JOIN post_hashtag t2 ON t1.ref_image = t2.ref_image where t2.tag='"+hashtags+"';", conexion);
+                MySqlDataReader myreader = comando.ExecuteReader();
+
+                return myreader;
+            }
+            catch (Exception ex)
+            {
+                if (conexion.State == System.Data.ConnectionState.Open)
+                {
+                    conexion.Close();
+                }
+
+                return null;
+            }
+
+        }
+
+
     }
 }

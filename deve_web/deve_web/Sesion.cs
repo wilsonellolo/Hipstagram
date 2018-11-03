@@ -9,5 +9,6 @@ namespace deve_web
     {
         public static String username = null;
         public static bool logueado = false;
+        public static String search = null;
     }
 }

@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Feed.aspx.cs" Inherits="deve_web.Views.Feed" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Search.aspx.cs" Inherits="deve_web.Views.Search" %>
 
 <!DOCTYPE html>
 
@@ -13,25 +13,10 @@
     <form id="form1" runat="server" >
         <div> 
             <img src="img.png"/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            <asp:LinkButton style="vertical-align:middle"  ID="LinkButton4" runat="server" OnClick="LinkButton2_Click">Buscar</asp:LinkButton> 
-            <asp:TextBox ID="txtBuscar" Width="250" runat="server" placeholder="Ingrese un alias o #hashtag"></asp:TextBox>
+            <asp:LinkButton style="vertical-align:middle"  ID="LinkButton4" runat="server" OnClick="LinkButton2_Click">Perfil</asp:LinkButton> 
             &nbsp;&nbsp;&nbsp;
             <asp:LinkButton style="vertical-align:middle"  ID="LinkButton2" runat="server" OnClick="LinkSalir">Salir</asp:LinkButton>
         </div>
-        <asp:Panel ID="Panel1" runat="server" class="form">
-         
-        <h2>Publicar:</h2>
-            <p type="Imagen:">
-                <asp:FileUpload CssClass="button1" ID="fup" accept="image/*" runat="server" required/>
-            </p>
-            <p type="Descripción:"> 
-                <asp:TextBox ID="txtDescripcion" runat="server" placeholder="Ingrese una descripción de la imagen" required></asp:TextBox> </p>
-            <p type="Hashtags:">
-                <asp:TextBox ID="TxtHashtag" runat="server" placeholder="#Hashtag1 #hashtag2..."></asp:TextBox> 
-            </p>
-            <asp:Button CssClass="button1" ID="Button1" runat="server" Text="Subir" OnClick="Button1_Click" />
-       
-              </asp:Panel>
     </form>
         
 

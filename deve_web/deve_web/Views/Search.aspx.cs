@@ -1,4 +1,7 @@
-﻿using System;
+﻿using deve_web.Acces;
+using deve_web.Logic;
+using MySql.Data.MySqlClient;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -7,25 +10,22 @@ using System.Web.UI.WebControls;
 
 namespace deve_web.Views
 {
-    using deve_web.Acces;
-    using Logic;
-    using MySql.Data.MySqlClient;
-    using System.IO;
-    using Acces;
-    public partial class Feed : System.Web.UI.Page
+    public partial class Search : System.Web.UI.Page
     {
-        String username;
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (!Sesion.logueado) {
-                Panel1.Visible = false;
+            if (string.IsNullOrEmpty(Sesion.search)) {
+                Response.Redirect("Feed.aspx");
             }
+           
 
             MySqlConnection conexion = new MySqlConnection(Variables.StringConection);
             try
             {
                 FeedLogic fl = new FeedLogic();
-                MySqlDataReader myreader = fl.posts();
+                crud crr = new crud();
+                MySqlDataReader myreader = crr.GetPostsSearch(Sesion.search);
+             
                 short count = 0;
                 while (myreader.Read())
                 {
@@ -55,7 +55,8 @@ namespace deve_web.Views
                     hashtgas.ForeColor = System.Drawing.Color.Blue;
                     MySqlDataReader RH = fl.HashtagsR(myreader.GetString(0));
                     String auxHashtags = string.Empty;
-                    while (RH.Read()) {
+                    while (RH.Read())
+                    {
                         auxHashtags += RH.GetString(1) + " ";
                     }
                     hashtgas.Text = "<BR><BR>" + auxHashtags;
@@ -81,7 +82,8 @@ namespace deve_web.Views
                     {
                         LikeCount.Text = count_like;
                     }
-                    else {
+                    else
+                    {
                         LikeCount.Text = "0";
                     }
                     pa.Controls.Add(LikeCount);
@@ -92,7 +94,7 @@ namespace deve_web.Views
                     btnLike.Text = "↑";
                     btnLike.CssClass = "like";
                     btnLike.ToolTip = myreader.GetString(0) + "#";
-                    btnLike.Click += new EventHandler(this.Like_click) ;
+                    btnLike.Click += new EventHandler(this.Like_click);
                     pa.Controls.Add(btnLike);
 
                     //Comentarios
@@ -137,13 +139,14 @@ namespace deve_web.Views
             catch (Exception ex) { }
 
         }
-        protected void hacer (String a){}
+        protected void hacer(String a) { }
 
-        protected void Like_click(object sender, EventArgs e) {
+        protected void Like_click(object sender, EventArgs e)
+        {
             //Response.Write("<script LANGUAGE='JavaScript' >alert('¡Voto positivo!')</script>");
             Button bt = (Button)sender;
             crud cr = new crud();
-            cr.inserRank(Sesion.username, bt.ToolTip.Replace("#",""), "1");
+            cr.inserRank(Sesion.username, bt.ToolTip.Replace("#", ""), "1");
             Response.Redirect("Feed.aspx");
         }
         protected void Dislike_click(object sender, EventArgs e)
@@ -155,32 +158,7 @@ namespace deve_web.Views
             Response.Redirect("Feed.aspx");
         }
 
-        protected void Button1_Click(object sender, EventArgs e)
-        {
-            if (fup.HasFile)
-            {
-                ServiceLogic sl = new ServiceLogic();
-                if (sl.IsSensitiveImage(fup.FileName)) {
-                    Response.Write("<script LANGUAGE='JavaScript' >alert('No se ha podido publicar la foto debido a que la imagen contiene contenido sensible (muertes, desmembramiento, contenido sexual, contenido que incite al odio)')</script>");
-                    return;
-                }
-                if (sl.IsSensitiHashtags(TxtHashtag.Text)) {
-                    Response.Write("<script LANGUAGE='JavaScript' >alert('No se ha podido publicar la foto debido a que los hashtags contienen contenido sensible (muertes, desmembramiento, contenido sexual, contenido que incite al odio) ')</script>");
-                    return;
-                }
-                int lenght = fup.PostedFile.ContentLength;
-                byte[] pic = new byte[lenght];
-                fup.PostedFile.InputStream.Read(pic, 0, lenght);
-                FeedLogic fl = new FeedLogic();
-                if (fl.LoadImage(pic, txtDescripcion.Text, TxtHashtag.Text)) {
-                    Response.Write("<script LANGUAGE='JavaScript' >alert('¡Listo!')</script>");
-                     Response.Redirect("Feed.aspx");
-                    return;
-                }
-            }
-                Response.Write("<script LANGUAGE='JavaScript' >alert('¡Algo salio mal! ')</script>");
-            
-        }
+       
 
 
         protected void LinkSalir(object sender, EventArgs e)
@@ -192,16 +170,7 @@ namespace deve_web.Views
 
         protected void LinkButton2_Click(object sender, EventArgs e)
         {
-            if (!string.IsNullOrEmpty(txtBuscar.Text))
-            {
-                Sesion.search = txtBuscar.Text;
-                Response.Redirect("Search.aspx");
-            }
-            else {
-                Response.Write("<script LANGUAGE='JavaScript' >alert('Ingresa algun parametro de busqueda')</script>");
-
-            }
-
+            Response.Redirect("Feed.aspx");
         }
     }
 }
